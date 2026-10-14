@@ -1,0 +1,28 @@
+{
+  "name": "pr-watch",
+  "version": "0.1.0",
+  "description": "Tracks GitLab MRs and GitHub PRs created during the session and shows their state, pipeline, approval and unresolved threads in a band above the prompt, with clickable ids",
+  "author": { "name": "David Cherriere" },
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "icons": {
+      "title": "Icon set",
+      "type": "string",
+      "options": ["nerd", "emoji"],
+      "default": "nerd",
+      "description": "Icon set for the band: nerd (needs a Nerd Font terminal) or emoji"
+    },
+    "gitlabHost": {
+      "title": "GitLab host",
+      "type": "string",
+      "default": "gitlab.com",
+      "description": "GitLab hostname used by /pr-track for group/project!iid and bare !iid refs"
+    },
+    "defaultProject": {
+      "title": "Default GitLab project",
+      "type": "string",
+      "default": "",
+      "description": "group/project assumed by /pr-track for bare !iid refs; empty disables them"
+    }
+  }
+}

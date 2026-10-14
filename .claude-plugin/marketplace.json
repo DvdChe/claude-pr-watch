@@ -1,0 +1,5 @@
+{
+  "name": "claude-pr-watch",
+  "owner": { "name": "David Cherriere" },
+  "plugins": [{ "name": "pr-watch", "source": "./" }]
+}
