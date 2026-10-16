@@ -268,6 +268,10 @@ export const register: Register = (on, options) => {
       description: 'Stop tracking an MR/PR (!iid, #number or all); no argument lists tracked ones',
     })
     await $.command.register({
+      name: 'pr-untrack-merged',
+      description: 'Stop tracking every merged (and closed) MR/PR',
+    })
+    await $.command.register({
       name: 'pr-debug',
       description: 'Show the pr-watch journal (loads, polls, errors)',
     })
@@ -300,6 +304,17 @@ export const register: Register = (on, options) => {
         ])}
       </Box>
     )
+  })
+
+  on('command.run', { command: 'pr-untrack-merged' }, async $ => {
+    const list = (await read($, mrs)) as readonly TrackedMr[]
+    const done = list.filter(mr => mr.state === 'merged' || mr.state === 'closed')
+    if (done.length === 0) return { text: 'No merged or closed MRs tracked.' }
+    await update($, mrs, current =>
+      current.filter(mr => mr.state !== 'merged' && mr.state !== 'closed'),
+    )
+
+    return { text: `Untracked ${done.map(mr => refOf(mr)).join(', ')}.` }
   })
 
   on('command.run', { command: 'pr-debug' }, () => ({

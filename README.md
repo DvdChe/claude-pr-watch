@@ -37,6 +37,7 @@ Only the forges you actually track need their CLI.
 |---|---|
 | `/pr-track <ref>` | Track an MR/PR: a full URL, `group/project!iid`, `owner/repo#number`, or a bare `!iid` (needs the `Default GitLab project` setting) |
 | `/pr-untrack <!iid \| #number \| all>` | Stop tracking; with no argument, lists what is tracked |
+| `/pr-untrack-merged` | Stop tracking every merged (and closed) MR/PR |
 | `/pr-debug` | Show the plugin's journal (loads, polls, errors) |
 
 MRs/PRs created in the session via `glab mr create` or `gh pr create` are tracked automatically — no command needed.
